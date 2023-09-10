@@ -1,4 +1,4 @@
-name: "Deploy Website Clicker"
+name: "Deploy TarotClickBot"
 
 on:
   push:
