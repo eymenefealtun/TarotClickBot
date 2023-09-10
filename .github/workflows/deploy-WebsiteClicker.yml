@@ -6,7 +6,7 @@ on:
         - "v*" 
            
 env:
-   PROJECT_PATH: WebsiteClicker/WebsiteClicker.csproj    
+   PROJECT_PATH: TarotClickBot/TarotClickBot.csproj    
     
 jobs:
   deploy:
@@ -35,5 +35,5 @@ jobs:
         - uses: csexton/release-asset-action@v2
           with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
-            pattern: TarotType.Main/bin/Release/net6.0-windows/win-x64/publish/TarotType.Main.exe
+            pattern: TarotClickBot\bin\Release\net6.0\win-x64\publish\win-x64\TarotClickBot.exe
             release-url: ${{ steps.create_release.outputs.upload_url }}
