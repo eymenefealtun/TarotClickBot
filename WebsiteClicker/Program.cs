@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Diagnostics;
+using Microsoft.Playwright;
+using HtmlAgilityPack;
 
 int _sleepSecond = 2;
 int _negativeSecond = 0;
@@ -13,20 +15,69 @@ int _numberOfPull = 0;
 int _noSuchElementException = 0;
 int _errorOccured = 0;
 String _infoString = "";
-
 AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
+HtmlWeb web = new HtmlWeb();
+
+//var playwright = await Playwright.CreateAsync();
+
+//RunPlayWright();
+//RunAppSelenium(); // 100 pull in 82 second - result: 100 pull
+//RunHtmlAgility();   // 103 pull in 76 second - result: 107 pull
+RawHtml();            // 100 pull in 20 second - result: 75 pull
+
+return;
+
+void RunHtmlAgility()
+{
+    SetPreferences();
+
+    //HandleSelenium();
+
+    ClickHtmlAgility();
+}
+
+void ClickHtmlAgility()
+{
+    WriteInfo();
+
+    while ("1" == "1")
+    {
+        try
+        {
+            web.Load(_url);
+            _numberOfPull++;
+            WriteInfo();
+            Wait(_sleepSecond, _negativeSecond, _positiveSecond);
+        }
+        catch (NoSuchElementException)
+        {
+            _noSuchElementException++;
+            WriteInfo();
+            Wait(4, 0, 0);
+        }
+        catch (Exception)
+        {
+            _errorOccured++;
+            WriteInfo();
+            Wait(4, 0, 0);
+        }
+
+    }
+}
 
 
 
-RunApp();
 
-void RunApp()
+
+void RunAppSelenium()
 {
     SetPreferences();
 
     HandleSelenium();
 
-    Click();
+    ClickSelenium();
+
+    Console.ReadLine();
 }
 
 void SetPreferences()
@@ -86,12 +137,10 @@ void HandleSelenium()
     var chromerDriverService = ChromeDriverService.CreateDefaultService();
     chromerDriverService.HideCommandPromptWindow = true;
 
-    var chromeDriver = new ChromeDriver(chromerDriverService, chromeOptions);
-
-    _chromeDriver = chromeDriver;
+    _chromeDriver = new ChromeDriver(chromerDriverService, chromeOptions);
 }
 
-void Click()
+void ClickSelenium()
 {
     WriteInfo();
 
@@ -141,4 +190,52 @@ void CurrentDomain_ProcessExit(object? sender, EventArgs e)
     Process[] processes = Process.GetProcessesByName("chromedriver");
     foreach (Process process in processes)
         process.Kill();
+}
+
+
+async void RunPlayWright()
+{
+
+
+    var playwright = await Playwright.CreateAsync();
+    var browser = await playwright.Chromium.LaunchAsync(new() { Headless = false });
+    await browser.NewPageAsync();
+    var page = await browser.NewPageAsync();
+    await page.GotoAsync("https://github.com/eymenefealtun");
+
+}
+
+void RawHtml()
+{
+    SetPreferences();
+    HttpClient httpClient = new HttpClient();
+
+
+    WriteInfo();
+
+    while ("1" == "1")
+    {
+        Thread.Sleep(100);
+        try
+        {
+            httpClient.GetAsync(_url,
+           HttpCompletionOption.ResponseHeadersRead);
+            _numberOfPull++;
+            WriteInfo();
+            Wait(_sleepSecond, _negativeSecond, _positiveSecond);
+        }
+        catch (NoSuchElementException)
+        {
+            _noSuchElementException++;
+            WriteInfo();
+            Wait(4, 0, 0);
+        }
+        catch (Exception)
+        {
+            _errorOccured++;
+            WriteInfo();
+            Wait(4, 0, 0);
+        }
+
+    }
 }

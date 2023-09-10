@@ -1,21 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 
+
+
+		<!--<PlatformTarget>x64</PlatformTarget>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>-->
 		<PublishSingleFile>true</PublishSingleFile>
 		<SelfContained>true</SelfContained>
 
-		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
-		<EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+		<!--<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+		<EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>-->
 
-  </PropertyGroup>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Selenium.WebDriver" Version="4.12.4" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.53" />
+		<PackageReference Include="Microsoft.Playwright" Version="1.37.1" />
+		<PackageReference Include="Selenium.WebDriver" Version="4.12.4" />
+	</ItemGroup>
 
 </Project>
