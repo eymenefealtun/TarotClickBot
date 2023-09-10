@@ -21,7 +21,7 @@
 
 </p>
 
-**Tarot Click Bot** a click bot that permits you to visit any website of your choice at specified intervals written in [C#](https://learn.microsoft.com/en-us/dotnet/csharp/), based on [.NetCore Console App](https://learn.microsoft.com/en-us/dotnet/core/tutorials/with-visual-studio?pivots=dotnet-7-0).
+**Tarot Click Bot** a click bot that permits you to visit any website of your choice at specified intervals written in [C#](https://learn.microsoft.com/en-us/dotnet/csharp/), based on [Console App](https://learn.microsoft.com/en-us/dotnet/core/tutorials/with-visual-studio?pivots=dotnet-7-0). It simply sends a GET request to the target website.
 
 ![](https://github.com/eymenefealtun/TarotClickBot/blob/master/Resources/TarotClickBotGif.gif)
 ![](https://github.com/eymenefealtun/TarotClickBot/blob/master/Resources/TarotClickBotFirstImage.PNG)
